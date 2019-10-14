@@ -1,0 +1,1 @@
+export const SET_ANALISE = 'AUTH/SET_ANALISE'

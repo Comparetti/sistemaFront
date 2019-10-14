@@ -1,0 +1,1 @@
+export const SET_INTERMEIO = 'AUTH/SET_INTERMEIO'
