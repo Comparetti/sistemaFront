@@ -103,7 +103,7 @@ export default {
         items: [
           {
             title: 'Phoebus',
-            url: '/Phoebaus',
+            url: '/Phoebus',
             icon: 'icon-bell',
             exact: true
           },
@@ -125,17 +125,29 @@ export default {
         items: [
           {
             title: 'Aluguel',
-            url: '/Phoebus',
+            url: '/Aluguel',
             icon: 'icon-bell',
             exact: true
           },
           {
-            title: 'Desativadas',
-            url: '/intermeio',
+            title: 'Consulta',
+            url: '/Consulta',
+            exact: true
+          }
+        ] },
+      { title: 'Faturamento',
+        icon: 'monetization_on',
+        url: '/',
+        exact: true,
+        items: [
+          {
+            title: 'Clientes',
+            url: '/',
+            icon: 'icon-bell',
             exact: true
           },
           {
-            title: 'Consulta',
+            title: 'Intermeio - R.E',
             url: '/',
             exact: true
           }

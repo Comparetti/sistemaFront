@@ -7,7 +7,7 @@ Vue.use(VueResource)
 
 const http = Vue.http
 
-http.options.root = 'https://localhost:44372/api/'
+http.options.root = 'https://localhost:44372/api'
 
 http.interceptors.push(interceptors)
 

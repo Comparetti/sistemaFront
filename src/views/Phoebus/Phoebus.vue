@@ -1,9 +1,17 @@
 <template>
-  <v-card>
+  <v-card
+    elevation="10"
+  >
+
+    <v-card elevation="0">
+
+      <v-card-title>Phoebus</v-card-title>
+    </v-card>
+
     <v-card-title>
-      Phoebus
       <div class="flex-grow-1"></div>
       <v-text-field
+        loading
         v-model="search"
         append-icon="search"
         label="Pesquisar"
@@ -11,12 +19,15 @@
         hide-details
       ></v-text-field>
     </v-card-title>
+
     <v-data-table
       :headers="headers"
       :items="desserts"
       :search="search"
     ></v-data-table>
+
   </v-card>
+
 </template>
 
 <script>
@@ -46,7 +57,6 @@ export default {
   async mounted () {
     await this.ActionFindPhoebuslist()
     this.desserts = this.phoebuslist.results
-    console.log(this.phoebuslist)
   },
   computed: {
     ...mapState('phoebuslist', ['phoebuslist'])

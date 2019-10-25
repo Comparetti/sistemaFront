@@ -1,9 +1,18 @@
 <template>
-  <v-card>
+  <v-card
+    elevation="10"
+    shaped="true"
+  >
+
+    <v-card elevation="0">
+
+      <v-card-title>Banco de dados - Intermeio</v-card-title>
+    </v-card>
+
     <v-card-title>
-      Intermeio
       <div class="flex-grow-1"></div>
       <v-text-field
+        loading
         v-model="search"
         append-icon="search"
         label="Pesquisar"
@@ -11,12 +20,15 @@
         hide-details
       ></v-text-field>
     </v-card-title>
+
     <v-data-table
       :headers="headers"
       :items="desserts"
       :search="search"
     ></v-data-table>
+
   </v-card>
+
 </template>
 
 <script>
@@ -46,7 +58,6 @@ export default {
   async mounted () {
     await this.ActionFindIntermeiolist()
     this.desserts = this.intermeiolist.results
-    console.log(this.intermeiolist.results)
   },
   computed: {
     ...mapState('intermeiolist', ['intermeiolist'])

@@ -9,6 +9,13 @@ export const ActionDoLogin = ({ dispatch }, payload) => {
   })
 }
 
+export const ActionNewLogin = ({ dispatch }, payload) => {
+  return services.auth.newUser(payload).then(res => {
+    dispatch('ActionSetUser', res.data.user)
+    dispatch('ActionSetToken', res.data.token)
+  })
+}
+
 export const ActionCheckToken = ({ dispatch, state }) => {
   if (state.token) {
     return Promise.resolve(state.token)

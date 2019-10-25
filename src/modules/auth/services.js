@@ -1,5 +1,5 @@
 export default {
-  login: { method: 'post', url: 'login' },
   auth: { method: 'post', url: 'auth/login' },
+  newUser: { method: 'post', url: 'auth/Register' },
   loadSession: { method: 'get', url: 'auth/loadSession' }
 }

@@ -1,11 +1,9 @@
 <template>
-  <v-card
-    elevation="10"
-  >
+  <v-card elevation="10">
 
     <v-card elevation="0">
 
-      <v-card-title>Analise</v-card-title>
+      <v-card-title>Consulta</v-card-title>
     </v-card>
 
     <v-card-title>
@@ -38,31 +36,31 @@ export default {
       search: '',
       headers: [
         {
-          text: 'Transação POS - Analise',
+          text: 'Cliente',
           align: 'left',
           sortable: false,
-          value: 'confirmation_date'
+          value: 'cpfcnpj'
         },
-        { text: 'Cliente', value: 'nomeRazao' },
-        { text: 'CNPJ', value: 'cpfCnpj' },
-        { text: 'NSU', value: 'nsu' },
-        { text: 'Bandeira', value: 'phoebus.brand' },
-        { text: 'Numero Cartao', value: 'card_number' },
-        { text: 'Valor', value: 'phoebus.value' },
-        { text: 'POS', value: 'phoebus.terminal' }
+        { text: 'Numero Serie', value: 'numeroDeSerie' },
+        { text: 'Numero Logico', value: 'numeroLogico' },
+        { text: 'Modelo', value: 'modelo' },
+        { text: 'Dia Vencimento', value: 'diaVencimento' },
+        { text: 'Valor Aluguel', value: 'valorAluguel' },
+        { text: 'Desconto Faturamento', value: 'descontoEmFaturamento' },
+        { text: 'Status', value: 'posStatus' }
       ],
       desserts: []
     }
   },
   async mounted () {
-    await this.ActionFindAnaliselist()
-    this.desserts = this.analiselist.results
+    await this.ActionFindConsultalist()
+    this.desserts = this.consultalist
   },
   computed: {
-    ...mapState('analiselist', ['analiselist'])
+    ...mapState('consultalist', ['consultalist'])
   },
   methods: {
-    ...mapActions('analiselist', ['ActionFindAnaliselist'])
+    ...mapActions('consultalist', ['ActionFindConsultalist'])
   }
 }
 </script>

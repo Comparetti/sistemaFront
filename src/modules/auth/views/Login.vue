@@ -176,20 +176,40 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['ActionDoLogin']),
+    ...mapActions('auth', ['ActionNewLogin']),
     async submit () {
-      this.isLoading = true
-      try {
-        await this.ActionDoLogin(
-          { 'email': this.user.email,
-            'password': this.user.password
-          })
-        this.$router.push({ name: 'home' })
-      } catch (err) {
-        console.log(err)
-        this.error = err.data ? err.data : 'Não foi possível fazer login'
-        this.showSnackbar = true
-      } finally {
-        this.isLoading = false
+      if (this.isLogin === true) {
+        this.isLoading = true
+        try {
+          await this.ActionDoLogin(
+            { 'email': this.user.email,
+              'password': this.user.password
+            })
+          this.$router.push({ name: 'home' })
+        } catch (err) {
+          console.log(err)
+          this.error = err.data ? err.data : 'Não foi possível fazer login'
+          this.showSnackbar = true
+        } finally {
+          this.isLoading = false
+        }
+      } else {
+        try {
+          this.isLoading = true
+
+          await this.ActionNewLogin(
+            { 'email': this.user.email,
+              'password': this.user.password,
+              'name': this.user.name
+            })
+          this.$router.push({ name: 'home' })
+        } catch (err) {
+          console.log(err)
+          this.error = err.data ? err.data : 'Não foi possível fazer login'
+          this.showSnackbar = true
+        } finally {
+          this.isLoading = false
+        }
       }
     }
   }
