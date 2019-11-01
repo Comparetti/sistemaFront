@@ -1,5 +1,4 @@
 # suporte-vue
-http://merchant.intermeiopagamentos.com/#/
 ## Project setup
 ```
 npm install
