@@ -1,7 +1,6 @@
 <template>
   <v-card
     elevation="10"
-    shaped="true"
   >
 
     <v-card elevation="0">
@@ -25,7 +24,11 @@
       :headers="headers"
       :items="desserts"
       :search="search"
-    ></v-data-table>
+    >
+          <template v-slot:item.valor="{ item }">
+        <span>R$ {{item.valor}}</span>
+      </template>
+    </v-data-table>
 
   </v-card>
 
@@ -33,6 +36,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { currencyFormatter } from '@/utils'
 export default {
   data () {
     return {
@@ -63,7 +67,10 @@ export default {
     ...mapState('intermeiolist', ['intermeiolist'])
   },
   methods: {
-    ...mapActions('intermeiolist', ['ActionFindIntermeiolist'])
+    ...mapActions('intermeiolist', ['ActionFindIntermeiolist']),
+    formatCurrency (value) {
+      return currencyFormatter().format(value)
+    }
   }
 }
 </script>

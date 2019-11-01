@@ -2,7 +2,6 @@
   <v-card elevation="10">
 
     <v-card elevation="0">
-
       <v-card-title>Extrato do Aluguel</v-card-title>
     </v-card>
 
@@ -24,50 +23,40 @@
       :search="search"
     >
 
+      <template v-slot:item.totalAluguel="{ item }">
+        <span>{{formatCurrency(item.totalAluguel)}}</span>
+      </template>
+      <template v-slot:item.totalRecebido="{ item }">
+        <span>{{formatCurrency(item.totalRecebido)}}</span>
+      </template>
+
       <template v-slot:item.listClientePos="{ item }">
         <v-dialog
           v-model="dialog"
-         max-width="500px"
-         scrollable = "true"
+          max-width="700px"
         >
+          <v-card>
+            <v-card-title>
+              POS
+            </v-card-title>
+            <v-card-text>
+              Passar uma lista com as pos vinculadas
+            </v-card-text>
+          </v-card>
+
           <template v-slot:activator="{ on }">
             <v-btn
               class="ma-2"
-              tile
-              large
               color="blue"
               icon
+              @click="dialog2 = true"
             >
               <v-icon
                 dark
                 v-on="on"
               >visibility</v-icon>
             </v-btn>
-
           </template>
-<v-card
-    class="mx-auto"
-  >
-    <v-card-text>
-      <div>Word of the Day</div>
-      <p class="display-1 text--primary">
-        be•nev•o•lent
-      </p>
-      <p>adjective</p>
-      <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
-      </div>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        text
-        color="deep-purple accent-4"
-      >
-        Learn More
-      </v-btn>
-    </v-card-actions>
-  </v-card>
         </v-dialog>
       </template>
 
@@ -94,6 +83,7 @@
 </template>
 
 <script>
+import { currencyFormatter } from '@/utils'
 import { mapActions, mapState } from 'vuex'
 export default {
   data () {
@@ -115,25 +105,11 @@ export default {
         { text: 'Status', align: 'center', value: 'statusCobranca' },
         { text: 'POS', align: 'center', value: 'listClientePos' }
       ],
-      headerss: [
-        {
-          text: 'Cliente',
-          align: 'left',
-          sortable: false,
-          value: 'cpfcnpj'
-        },
-        { text: 'Numero Serie', value: 'numeroDeSerie' },
-        { text: 'Numero Logico', value: 'numeroLogico' },
-        { text: 'Modelo', value: 'modelo' },
-        { text: 'Dia Vencimento', value: 'diaVencimento' },
-        { text: 'Valor Aluguel', value: 'valorAluguel' },
-        { text: 'Desconto Faturamento', value: 'descontoEmFaturamento' },
-        { text: 'Status', value: 'posStatus' }
-      ],
-      desserts: []
+      desserts: [],
+      aluguelList: []
     }
   },
-  async mounted () {
+  async created () {
     await this.ActionFindAluguellist()
     this.desserts = this.aluguellist
   },
@@ -142,6 +118,9 @@ export default {
   },
   methods: {
     ...mapActions('aluguellist', ['ActionFindAluguellist']),
+    formatCurrency (value) {
+      return currencyFormatter().format(value)
+    },
     getStatus (statusCobranca) {
       if (statusCobranca === 'Correto') return 'green'
       else return 'red'
