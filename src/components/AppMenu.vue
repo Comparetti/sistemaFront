@@ -5,6 +5,7 @@
     :mini-variant.sync="mini"
     absolute
     temporary
+    color="grey lighten-4"
   >
     <v-list>
 
@@ -23,7 +24,10 @@
 
       <v-list-item v-if="!mini">
         <v-list-item-avatar>
-          <v-icon color="primary">fingerprint</v-icon>
+          <img
+            :src="imagemPosSrc"
+            style="width: 40px; height: 35px"
+          />
         </v-list-item-avatar>
         <v-list-item-title>{{this.user.name}}</v-list-item-title>
         <v-list-item-action>
@@ -46,7 +50,10 @@
         @click.stop="$emit('input', false)"
       >
         <v-list-item-action>
-          <v-icon>{{ item.icon }}</v-icon>
+          <img
+            :src="item.icon"
+            style="width: 25px; height: 25px"
+          />
         </v-list-item-action>
 
         <v-list-item-content>
@@ -62,7 +69,10 @@
       >
         <template v-slot:activator>
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <img
+              :src="item.icon"
+              style="width: 25px; height: 25px"
+            />
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title"></v-list-item-title>
@@ -95,9 +105,10 @@ export default {
     value: Boolean
   },
   data: () => ({
+    imagemPosSrc: require('../assets/img/avatar.png'),
     items: [
       { title: 'Transações',
-        icon: 'payment',
+        icon: require('../assets/img/transacao.svg'),
         url: '/',
         exact: true,
         items: [
@@ -119,7 +130,7 @@ export default {
           }
         ] },
       { title: 'POS',
-        icon: 'account_balance_wallet',
+        icon: require('../assets/img/pos.svg'),
         url: '/',
         exact: true,
         items: [
@@ -136,7 +147,7 @@ export default {
           }
         ] },
       { title: 'Faturamento',
-        icon: 'monetization_on',
+        icon: require('../assets/img/a.png'),
         url: '/',
         exact: true,
         items: [
@@ -155,8 +166,8 @@ export default {
 
     ],
     itemsnav: [
-      { title: 'Home', icon: 'home', url: '/', exact: true },
-      { title: 'Analise', icon: 'assignment_late', url: '/analise', exact: true }
+      { title: 'Home', icon: require('../assets/img/home.svg'), url: '/', exact: true },
+      { title: 'Analise', icon: require('../assets/img/analise.svg'), url: '/analise', exact: true }
     ],
     mini: true
   }),

@@ -14,7 +14,7 @@
         <v-card class="elevation-12">
           <v-toolbar
             dark
-            color="primary"
+            color="blue-grey lighten-1"
           >
             <v-toolbar-title>
               Login
@@ -73,7 +73,7 @@
             <v-spacer></v-spacer>
             <v-btn
               :disabled="$v.$invalid"
-              color="primary"
+              color="blue-grey lighten-2"
               large
               @click="submit"
             >{{texts.toolbar}}</v-btn>

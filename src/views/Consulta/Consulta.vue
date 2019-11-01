@@ -9,7 +9,6 @@
     <v-card-title>
       <div class="flex-grow-1"></div>
       <v-text-field
-        loading
         v-model="search"
         append-icon="search"
         label="Pesquisar"

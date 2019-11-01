@@ -8,7 +8,6 @@
     <v-card-title>
       <div class="flex-grow-1"></div>
       <v-text-field
-        loading
         v-model="search"
         append-icon="search"
         label="Pesquisar"
@@ -35,19 +34,9 @@
           v-model="dialog"
           max-width="700px"
         >
-          <v-card>
-            <v-card-title>
-              POS
-            </v-card-title>
-            <v-card-text>
-              Passar uma lista com as pos vinculadas
-            </v-card-text>
-          </v-card>
-
           <template v-slot:activator="{ on }">
             <v-btn
               class="ma-2"
-              color="blue"
               icon
               @click="dialog2 = true"
             >
